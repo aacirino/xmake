@@ -97,6 +97,7 @@ after_build:
 
 test_script:
   - ps: xmake --version
+  - ps: xmake repo --add local-repo https://github.com/xmake-io/xmake-repo test
   - ps: Push-Location ./tests
   - ps: |-
       $tests = Get-ChildItem test.lua -Recurse | ForEach-Object {
