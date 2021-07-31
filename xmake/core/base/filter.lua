@@ -64,7 +64,7 @@ function filter.shell(cmd)
     scheduler:enable(false) -- disable coroutine scheduler to fix `attempt to yield across C-call boundary` when call gsub -> yield
     local ok, outdata, errdata = os.iorun(cmd)
     scheduler:enable(true)
-    if not ok then
+    if not ok and errdata ~= nill and (errdata:len() ~= 0) then
         os.raise("run $(shell %s) failed, errors: %s", cmd, errdata or "")
     end
 
